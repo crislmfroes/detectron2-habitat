@@ -25,7 +25,7 @@ if __name__ == '__main__':
     parser.add_argument('--output_path', default="./output")
     parser.add_argument('--max_iterations', default=3000, type=int)
     parser.add_argument('--config_file', default="detectron2/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
-    parser.add_argument('--opts', type=list, nargs=argparse.REMAINDER)
+    parser.add_argument('--opts', default=None, nargs=argparse.REMAINDER)
     args = parser.parse_args()
     try:
         os.mkdir(args.output_path)
