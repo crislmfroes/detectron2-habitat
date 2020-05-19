@@ -25,6 +25,7 @@ if __name__ == '__main__':
     parser.add_argument('--output_path', default="./output")
     parser.add_argument('--max_iterations', default=3000, type=int)
     parser.add_argument('--config_file', default="detectron2/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
+    parser.add_argument('--opts', type=list, nargs=argparse.REMAINDER)
     args = parser.parse_args()
     try:
         os.mkdir(args.output_path)
@@ -53,6 +54,7 @@ if __name__ == '__main__':
     cfg.INPUT.MIN_SIZE_TRAIN = (128,)
     cfg.INPUT.MAX_SIZE_TEST = 512
     cfg.INPUT.MIN_SIZE_TEST = 128
+    cfg.merge_from_list(args.opts)
     trainer = CustomTrainer(cfg)
     trainer.resume_or_load(resume=True if args.weights_path else False)
     try:
